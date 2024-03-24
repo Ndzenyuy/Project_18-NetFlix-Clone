@@ -1,0 +1,19 @@
+name: Netflix Clone wih Github Actions
+on: workflow_dispatch
+env: 
+    AWS_REGION: us-east-2
+
+jobs:
+    Testing:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Code checkout
+              uses: actions/checkout@v4
+
+            - name: Sonarqube analysis
+              uses: sonarsource/sonarqube-scan-action@master
+              env:
+                SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+                SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+            
+
